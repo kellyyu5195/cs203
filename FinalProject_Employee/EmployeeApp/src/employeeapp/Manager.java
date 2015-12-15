@@ -10,30 +10,24 @@ package employeeapp;
  *
  * @author Kelly Yu Two
  */
-public class Employee {
+public class Manager extends Employee{
     
-    public Employee (String aName, double aSal){
-        name = aName;
-        salary = aSal;
+    public Manager(String aName, int aSal) {
+        super(aName, aSal);
     }
     
-    public void setSalary(double aSal) {
-        salary = aSal;
-    }
-    
-    public String getName() {
-        return name;
+    public void setBonus(double aBonus) {
+        bonus = aBonus;
     }
     
     public double getSalary() {
-        return salary;
+        return bonus + super.getSalary();
     }
     
     public String toString() {
-        return name + ": " + salary;
+        return super.getName() + ": " + this.getSalary();
     }
     
-    private String name;
-    private double salary;
+    private double bonus;
     
 }
