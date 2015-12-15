@@ -16,7 +16,6 @@ public class Emplist {
         empList = new ArrayList<Employee>();
     }
     
-    
     public void sortByName(boolean inc) {
         Comparator<Employee> comp = new 
             Comparator<Employee>() {
@@ -81,17 +80,24 @@ public class Emplist {
         }
     }
 
-    public void changeOvertime(double otRate) {
+    public void changeOvertimeRate(double otRate) {
         for (Employee e: empList) {
             if (e instanceof Salaried) {
-                //e.setOvertimeRate(otRate);
+                ((Salaried) e).setOvertimeRate(otRate); 
             }
         }
     }
+    
+    public void changeHourlyRate(double hrlyRate) {
+        for (Employee e: empList) {
+            if (e instanceof Hourly) {
+                ((Hourly) e).setHourlyRate(hrlyRate);
+            }
+        }
+    }
+    
     private ArrayList<Employee> empList;
 
 // - Save the list to a file.
 // - Read the list in from a file.
-// - Change the OvertimeRate for all Salaried employees in the list.
-// - Change the HourlyRate for all Hourly employees in the list.
 }
