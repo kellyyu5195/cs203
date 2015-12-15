@@ -12,8 +12,9 @@ package employeeapp;
  */
 public class Manager extends Employee{
     
-    public Manager(String aName, int aSal) {
+    public Manager(String aName, int aSal, double aBonus) {
         super(aName, aSal);
+        bonus = aBonus;
     }
     
     public void setBonus(double aBonus) {
