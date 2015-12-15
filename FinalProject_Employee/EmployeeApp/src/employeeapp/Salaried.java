@@ -30,6 +30,7 @@ public class Salaried extends Employee{
         return super.getSalary() + (overtimeHours*overtimeRate);
     }
     
+    
     private double overtimeHours;
     private double overtimeRate;
     
