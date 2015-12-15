@@ -17,37 +17,36 @@ public class Emplist {
     }
     
     
-    public void sortByName() {
+    public void sortByName(boolean inc) {
         Comparator<Employee> comp = new 
             Comparator<Employee>() {
                 public int compare(Employee emp1, Employee emp2) {
-                    return emp1.getName().compareTo(emp2.getName());
+                    int i;
+                    if(inc) {i=1;} else {i = -1;}
+                    return i * emp1.getName().compareTo(emp2.getName());
                 }
             };
         Collections.sort(empList, comp);
     }
-   
-   public static Comparator<Country> createComparatorByArea(final boolean increasing) {
-       int direction;
-       if (increasing) direction = 1;
-       else direction = -1;
-       return new Comparator<Country>() {
-           public int compare(Country country1, Country country2) {
-               if (country1.area < country2.area) {
-                   return -1 * direction;
-               }
-               if (country1.area > country2.area) {
-                   return 1 * direction;
-               }
-               return 0;
-           }
-       };
-   }
     
-    
-    
-    
-    
+    public void sortBySalary(boolean inc) {
+        Comparator<Employee> comp = new
+            Comparator<Employee>() {
+                public int compare(Employee emp1, Employee emp2) {
+                    int i;
+                    if (inc) {i = 1;} else {i = -1;}
+                    if (emp1.getSalary() < emp2.getSalary()) {
+                        return -1 * i;
+                    }
+                    if (emp1.getSalary() > emp2.getSalary()) {
+                        return i;
+                    }
+                    return 0;
+                }
+            };
+        Collections.sort(empList, comp);
+    }
+       
     
     private ArrayList<Employee> empList;
     
