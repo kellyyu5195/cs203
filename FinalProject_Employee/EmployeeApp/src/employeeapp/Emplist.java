@@ -47,11 +47,15 @@ public class Emplist {
         Collections.sort(empList, comp);
     }
        
+    public void printList() {
+        for (Employee e: empList){
+            String curEmp = e.toString();
+            System.out.println(curEmp);
+        }
+    }
     
     private ArrayList<Employee> empList;
     
-// - Sort the list by name or by salary using strategy classes.
-// - Print the list (all fields)
 // - Print all fields of just the Managers, or just the Salaried, or just the Hourly workers.
 // - Save the list to a file.
 // - Read the list in from a file.

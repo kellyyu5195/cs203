@@ -31,7 +31,9 @@ public class Hourly extends Employee{
     }
     
     public String toString() {
-        return super.getName() + ": " + this.getSalary();
+        return "Name: " + super.getName() + ", Salary: " + super.getSalary()
+                + ", Hourly Rate: " + HourlyRate + ", Hours: "
+                + Hours;
     }
     
     private double HourlyRate;

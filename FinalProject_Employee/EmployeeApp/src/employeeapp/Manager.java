@@ -26,7 +26,8 @@ public class Manager extends Employee{
     }
     
     public String toString() {
-        return super.getName() + ": " + this.getSalary();
+        return "Name: " + super.getName() + ", Salary: " + super.getSalary()
+                + ", Bonus: " + bonus;
     }
     
     private double bonus;

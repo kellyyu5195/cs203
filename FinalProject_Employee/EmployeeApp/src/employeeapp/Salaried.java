@@ -31,7 +31,9 @@ public class Salaried extends Employee{
     }
     
     public String toString() {
-        return super.getName() + ": " + this.getSalary();
+        return "Name: " + super.getName() + ", Salary: " + super.getSalary()
+                + ", Overtime Hours: " + overtimeHours + ", Overtime Rate: "
+                + overtimeRate;
     }
     
     private double overtimeHours;
