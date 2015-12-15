@@ -30,6 +30,9 @@ public class Salaried extends Employee{
         return super.getSalary() + (overtimeHours*overtimeRate);
     }
     
+    public String toString() {
+        return super.getName() + ": " + this.getSalary();
+    }
     
     private double overtimeHours;
     private double overtimeRate;
