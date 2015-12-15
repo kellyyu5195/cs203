@@ -54,9 +54,36 @@ public class Emplist {
         }
     }
     
-    private ArrayList<Employee> empList;
+    public void printManagers() {
+        for (Employee e: empList) {
+            if (e instanceof Manager) {
+                String currEmp = e.toString();
+                System.out.println(currEmp);
+            }
+        }
+    }
     
-// - Print all fields of just the Managers, or just the Salaried, or just the Hourly workers.
+    public void printSalaried() {
+        for (Employee e: empList) {
+            if (e instanceof Salaried) {
+                String currEmp = e.toString();
+                System.out.println(currEmp);
+            }
+        }
+    }
+    
+    public void printHourly() {
+        for (Employee e: empList) {
+            if (e instanceof Hourly) {
+                String currEmp = e.toString();
+                System.out.println(currEmp);
+            }
+        }
+    }
+
+    
+    private ArrayList<Employee> empList;
+
 // - Save the list to a file.
 // - Read the list in from a file.
 // - Change the OvertimeRate for all Salaried employees in the list.
