@@ -16,8 +16,38 @@ public class Emplist {
         empList = new ArrayList<Employee>();
     }
     
+    
     public void sortByName() {
+        Comparator<Employee> comp = new 
+            Comparator<Employee>() {
+                public int compare(Employee emp1, Employee emp2) {
+                    return emp1.getName().compareTo(emp2.getName());
+                }
+            };
+        Collections.sort(empList, comp);
     }
+   
+   public static Comparator<Country> createComparatorByArea(final boolean increasing) {
+       int direction;
+       if (increasing) direction = 1;
+       else direction = -1;
+       return new Comparator<Country>() {
+           public int compare(Country country1, Country country2) {
+               if (country1.area < country2.area) {
+                   return -1 * direction;
+               }
+               if (country1.area > country2.area) {
+                   return 1 * direction;
+               }
+               return 0;
+           }
+       };
+   }
+    
+    
+    
+    
+    
     
     private ArrayList<Employee> empList;
     
