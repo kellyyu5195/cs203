@@ -5,12 +5,13 @@
  */
 
 package employeeapp;
+import java.util.*;
 
 /**
  *
  * @author Kelly Yu Two
  */
-public class Employee {
+public abstract class Employee {
     
     public Employee (String aName, double aSal){
         name = aName;

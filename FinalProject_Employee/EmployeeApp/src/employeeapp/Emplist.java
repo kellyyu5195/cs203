@@ -84,7 +84,7 @@ public class Emplist {
     public void changeOvertime(double otRate) {
         for (Employee e: empList) {
             if (e instanceof Salaried) {
-                e.setOvertimeRate(otRate);
+                //e.setOvertimeRate(otRate);
             }
         }
     }
