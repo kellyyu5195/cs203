@@ -37,7 +37,5 @@ public class Hourly extends Employee{
     }
     
     private double HourlyRate;
-    private double Hours;
-    
-    
+    private double Hours;   
 }

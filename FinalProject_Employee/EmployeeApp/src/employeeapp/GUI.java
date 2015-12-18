@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 public class GUI {
     
     private JFrame frame; 
+    private Emplist empList;
     
     public void initGUI() {
         frame = new JFrame("Employee Manager");
@@ -33,11 +34,24 @@ public class GUI {
         JPanel printPanel = new JPanel();
         JPanel filePanel = new JPanel();
         
+        JTextField disp = new JTextField("");
+        
+        JLabel inName = new JLabel("Name");
+        JLabel salary = new JLabel("Base Salary");
+        JLabel bonus = new JLabel("Bonus");
+        JLabel otHrLabel = new JLabel("Overtime Hours");
+        JLabel otRateLabel = new JLabel ("Overtime Rate");
+        JLabel hrlyRateLabel = new JLabel ("Hourly Rate");
+        JLabel hrsLabel = new JLabel ("Hours");
+        
         JTextField inputName = new JTextField ("");
         JTextField inputSal = new JTextField("");
         JTextField inputBonus = new JTextField("");
+        JTextField otHours = new JTextField("");
+        JTextField otRate = new JTextField("");
+        JTextField hrlyRate = new JTextField("");
+        JTextField hrs = new JTextField("");
         
-        JButton addEmployee = new JButton("Add Employee");
         JButton addManager = new JButton("Add Manager");
         JButton addSalaried = new JButton("Add Salaried");
         JButton addHourly = new JButton("Add Hourly");
@@ -55,9 +69,6 @@ public class GUI {
         addEmp.setLayout(new FlowLayout());
         printPanel.setLayout(new FlowLayout());
         filePanel.setLayout(new FlowLayout());
-        
-        
-        userInputPanel.add(userIn);
         
         addEmp.add(addEmployee);
         addEmp.add(addManager);
@@ -77,9 +88,28 @@ public class GUI {
         frame.add(printPanel);
         frame.add(filePanel);
         
-        addEmployee.addActionListener((ActionEvent e) -> {
-            
-        })
+        addManager.addActionListener((ActionEvent e) -> {
+            Manager person = new Manager(inName.getText(),
+                    Integer.parseInt(inputSal.getText()),
+                    Integer.parseInt(inputBonus.getText()));
+            empList.addEmp(person);
+        });
+        
+        addSalaried.addActionListener((ActionEvent e) -> {
+            Salaried person = new Salaried(inName.getText(),
+                    Integer.parseInt(inputSal.getText()),
+                    Integer.parseInt(otHours.getText()),
+                    Integer.parseInt(otRate.getText()));
+            empList.addEmp(person);
+        });
+        
+        addHourly.addActionListener((ActionEvent e) -> {
+            Hourly person = new Hourly(inName.getText(),
+                    Integer.parseInt(hrlyRate.getText()),
+                    Integer.parseInt(hrs.getText()));
+            empList.addEmp(person);
+        });
+        
     }
 
 

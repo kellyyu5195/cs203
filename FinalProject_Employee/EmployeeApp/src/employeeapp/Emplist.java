@@ -17,6 +17,10 @@ public class Emplist {
         empList = new ArrayList<Employee>();
     }
     
+    public void addEmp(Employee e) {
+        empList.add(e);
+    }
+    
     public void sortByName(boolean inc) {
         Comparator<Employee> comp = new 
             Comparator<Employee>() {
