@@ -6,6 +6,7 @@
 package employeeapp;
 
 import java.util.*;
+import java.io.*;
 /**
  *
  * @author Kelly Yu Two
@@ -96,8 +97,30 @@ public class Emplist {
         }
     }
     
+    public void outputFile() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("emp.Stream");
+            ObjectOutputStream outStream = new ObjectOutputStream(fileOut);
+            outStream.writeObject(this.toString());
+            outStream.close();
+            fileOut.close();
+        } catch (IOException i) {
+            System.out.println(i);
+        }
+    }
+    
+    public void inputFileStream () {
+        try {
+            FileInputStream fileIn = new FileInputStream("p.ser");
+            ObjectInputStream inStream = new ObjectInputStream(fileIn);
+            Emplist readThis = (Emplist) inStream.readObject();
+            System.out.println(readThis);
+        } catch (ClassNotFoundException | IOException i) {
+            System.out.println(i);
+        }
+    }
+    
+    
     private ArrayList<Employee> empList;
 
-// - Save the list to a file.
-// - Read the list in from a file.
 }

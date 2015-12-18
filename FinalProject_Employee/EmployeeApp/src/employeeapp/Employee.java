@@ -6,6 +6,8 @@
 
 package employeeapp;
 import java.util.*;
+import java.io.*;
+import java.io.Serializable;
 
 /**
  *
@@ -36,5 +38,5 @@ public abstract class Employee {
     
     private String name;
     private double salary;
-    
+
 }
