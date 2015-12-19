@@ -23,8 +23,9 @@ import javax.swing.JPanel;
  */
 public class GUI {
     
-    private JFrame frame; 
-    private Emplist empList;
+    public void setEmpList (Emplist e) {
+        empList = e;
+    }
     
     public void initGUI() {
         frame = new JFrame("Employee Manager");
@@ -70,7 +71,6 @@ public class GUI {
         printPanel.setLayout(new FlowLayout());
         filePanel.setLayout(new FlowLayout());
         
-        addEmp.add(addEmployee);
         addEmp.add(addManager);
         addEmp.add(addSalaried);
         addEmp.add(addHourly);
@@ -110,83 +110,37 @@ public class GUI {
             empList.addEmp(person);
         });
         
-    }
-
-
-        // listeners for buttons, methods from controller 
-        lockButton.addActionListener((ActionEvent e) -> {
-            guiController.lockedAct();
-            minuteButton.setBackground(Color.BLACK);
-            hourButton.setBackground(Color.BLACK);
-            upButton.setBackground(Color.BLACK);
-            downButton.setBackground(Color.BLACK);
+        
+        printList.addActionListener((ActionEvent e) -> {
+            empList.printList();
         });
-
-        setButton.addActionListener((ActionEvent e) -> {
-            guiController.setTimeAct();
-            minuteButton.setBackground(Color.PINK);
-            hourButton.setBackground(Color.PINK);
-            upButton.setBackground(Color.RED);
-            downButton.setBackground(Color.RED);
+        
+        printManagers.addActionListener((ActionEvent e) -> {
+            empList.printManagers();
         });
-
-        hourButton.addActionListener((ActionEvent e) -> {
-            guiController.setTimeHour();
+        
+        printSalaried.addActionListener((ActionEvent e) -> {
+            empList.printSalaried();
         });
-
-        minuteButton.addActionListener((ActionEvent e) -> {
-            guiController.setTimeMinute();
+        
+        printHourly.addActionListener((ActionEvent e) -> {
+            empList.printHourly();
         });
-
-        upButton.addActionListener((ActionEvent e) -> {
-            guiController.upAction();
+        
+        toFile.addActionListener((ActionEvent e) -> {
+            empList.outputFile();
         });
-
-        downButton.addActionListener((ActionEvent e) -> {
-            guiController.downAction();
+        
+        fromFile.addActionListener((ActionEvent e) -> {
+           empList.inputFileStream();
         });
-
-        alarmSetButton.addActionListener((ActionEvent e) -> {
-            this.setAlarm();
-        });
-
-        alarmClearButton.addActionListener((ActionEvent e) -> {
-            guiController.clearAlarm();
-            alarmSetButton.setText("Set Alarm");
-        });
-
+        
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-
-    /**
-     * Constructs the GUI components for a new window to set the alarm with
-     * drop-down menus.
-     */
-    public void setAlarm() {
-        // initialize new window to set the alarm
-        alarmInt = new int[2];
-        JFrame alarmFrame = new JFrame();
-        alarmFrame.setLayout(new GridLayout(1, 2));
-        JComboBox hourComboBox = new JComboBox(hourInts);
-        JComboBox minuteComboBox = new JComboBox(minuteInts);
-        JButton finishedAlarmButton = new JButton("Set Alarm");
-        alarmFrame.add(hourComboBox);
-        alarmFrame.add(minuteComboBox);
-        alarmFrame.add(finishedAlarmButton);
-        alarmFrame.pack();
-        alarmFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        alarmFrame.setVisible(true);
-
-        // add the button to set the alarm
-        finishedAlarmButton.addActionListener((ActionEvent e) -> {
-            alarmInt[0] = (int) hourComboBox.getSelectedItem();
-            alarmInt[1] = (int) minuteComboBox.getSelectedItem();
-            alarmSetButton.setText("Change Alarm");
-            alarmFrame.setVisible(false);
-            guiController.setAlarm(alarmInt);
-        });
-
     
+    
+    private JFrame frame; 
+    private Emplist empList;
 }
