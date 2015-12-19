@@ -23,20 +23,37 @@ import javax.swing.JPanel;
  */
 public class GUI {
     
+    /**
+     * Constructor of GUI
+     */
+    public GUI() {
+    }
+    
+    /**
+     * Sets the Emplist of the GUI
+     * @param e an Emplist for GUI
+     */
     public void setEmpList (Emplist e) {
         empList = e;
     }
     
+    /**
+     * Initializes a GUI
+     */
     public void initGUI() {
+        
+        // Set frame
         frame = new JFrame("Employee Manager");
+        
+        // Creating Panels
         JPanel displayPanel = new JPanel();
         JPanel userInputPanel = new JPanel();
         JPanel addEmp = new JPanel();
         JPanel printPanel = new JPanel();
+        JPanel sortPanel = new JPanel();
         JPanel filePanel = new JPanel();
         
-        JTextField disp = new JTextField("");
-        
+        // Creating Labels
         JLabel inName = new JLabel("Name");
         JLabel salary = new JLabel("Base Salary");
         JLabel bonus = new JLabel("Bonus");
@@ -45,14 +62,16 @@ public class GUI {
         JLabel hrlyRateLabel = new JLabel ("Hourly Rate");
         JLabel hrsLabel = new JLabel ("Hours");
         
-        JTextField inputName = new JTextField ("");
-        JTextField inputSal = new JTextField("");
-        JTextField inputBonus = new JTextField("");
-        JTextField otHours = new JTextField("");
-        JTextField otRate = new JTextField("");
-        JTextField hrlyRate = new JTextField("");
-        JTextField hrs = new JTextField("");
+        // Creating Input Areas
+        JTextArea inputName = new JTextArea(4, 25);
+        JTextArea inputSal = new JTextArea(4, 25);
+        JTextArea inputBonus = new JTextArea(4, 25);
+        JTextArea otHours = new JTextArea(4, 25);
+        JTextArea otRate = new JTextArea(4, 25);
+        JTextArea hrlyRate = new JTextArea(4, 25);
+        JTextArea hrs = new JTextArea(4, 25);
         
+        // Creating Buttons
         JButton addManager = new JButton("Add Manager");
         JButton addSalaried = new JButton("Add Salaried");
         JButton addHourly = new JButton("Add Hourly");
@@ -62,15 +81,24 @@ public class GUI {
         JButton printSalaried = new JButton("Print Salaried");
         JButton printHourly = new JButton("Print Hourly");
         
+        JButton sortListNameInc = new JButton("Sort Employees By Name Inc");
+        JButton sortListNameDec = new JButton("Sort Employees By Name Dec");
+        JButton sortSalaryInc = new JButton("Sort Employees By Salary Inc");
+        JButton sortSalaryDec = new JButton("Sort Employees By Salary Dec");
+        
         JButton toFile = new JButton("To File");
         JButton fromFile = new JButton("From File");
         
-        frame.setLayout(new FlowLayout());
+        // Set Layouts
+        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         userInputPanel.setLayout(new FlowLayout());
         addEmp.setLayout(new FlowLayout());
         printPanel.setLayout(new FlowLayout());
+        sortPanel.setLayout(new FlowLayout());
         filePanel.setLayout(new FlowLayout());
         
+        
+        // Add Components to Panels
         userInputPanel.add(inName);
         userInputPanel.add(inputName);
         userInputPanel.add(salary);
@@ -95,24 +123,33 @@ public class GUI {
         printPanel.add(printSalaried);
         printPanel.add(printHourly);
         
+        sortPanel.add(sortListNameInc);
+        sortPanel.add(sortListNameDec);
+        sortPanel.add(sortSalaryInc);
+        sortPanel.add(sortSalaryDec);
+        
         filePanel.add(toFile);
         filePanel.add(fromFile);
         
+        // Add Panels to frame
         frame.add(displayPanel);
         frame.add(userInputPanel);
         frame.add(addEmp);
         frame.add(printPanel);
+        frame.add(sortPanel);
         frame.add(filePanel);
         
+        
+        // Creating Action Listeners for Buttons
         addManager.addActionListener((ActionEvent e) -> {
-            Manager person = new Manager(inName.getText(),
+            Manager person = new Manager(inputName.getText(),
                     Integer.parseInt(inputSal.getText()),
                     Integer.parseInt(inputBonus.getText()));
             empList.addEmp(person);
         });
         
         addSalaried.addActionListener((ActionEvent e) -> {
-            Salaried person = new Salaried(inName.getText(),
+            Salaried person = new Salaried(inputName.getText(),
                     Integer.parseInt(inputSal.getText()),
                     Integer.parseInt(otHours.getText()),
                     Integer.parseInt(otRate.getText()));
@@ -120,7 +157,7 @@ public class GUI {
         });
         
         addHourly.addActionListener((ActionEvent e) -> {
-            Hourly person = new Hourly(inName.getText(),
+            Hourly person = new Hourly(inputName.getText(),
                     Integer.parseInt(hrlyRate.getText()),
                     Integer.parseInt(hrs.getText()));
             empList.addEmp(person);
@@ -141,6 +178,23 @@ public class GUI {
         
         printHourly.addActionListener((ActionEvent e) -> {
             empList.printHourly();
+        });
+        
+                
+        sortListNameInc.addActionListener((ActionEvent e) -> {
+            empList.sortByName(true);
+        });
+        
+        sortListNameDec.addActionListener((ActionEvent e) -> {
+            empList.sortByName(false);
+        });
+        
+        sortSalaryInc.addActionListener((ActionEvent e) -> {
+            empList.sortBySalary(true);
+        });
+        
+        sortSalaryDec.addActionListener((ActionEvent e) -> {
+            empList.sortBySalary(false);
         });
         
         toFile.addActionListener((ActionEvent e) -> {
