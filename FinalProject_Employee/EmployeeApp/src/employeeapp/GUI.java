@@ -71,6 +71,21 @@ public class GUI {
         printPanel.setLayout(new FlowLayout());
         filePanel.setLayout(new FlowLayout());
         
+        userInputPanel.add(inName);
+        userInputPanel.add(inputName);
+        userInputPanel.add(salary);
+        userInputPanel.add(inputSal);
+        userInputPanel.add(bonus);
+        userInputPanel.add(inputBonus);
+        userInputPanel.add(otHrLabel);
+        userInputPanel.add(otHours);
+        userInputPanel.add(otRateLabel);
+        userInputPanel.add(otRate);
+        userInputPanel.add(hrlyRateLabel);
+        userInputPanel.add(hrlyRate);
+        userInputPanel.add(hrsLabel);
+        userInputPanel.add(hrs);      
+                
         addEmp.add(addManager);
         addEmp.add(addSalaried);
         addEmp.add(addHourly);
@@ -84,6 +99,7 @@ public class GUI {
         filePanel.add(fromFile);
         
         frame.add(displayPanel);
+        frame.add(userInputPanel);
         frame.add(addEmp);
         frame.add(printPanel);
         frame.add(filePanel);
